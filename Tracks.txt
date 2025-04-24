@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+int main() {
+    int t[20], n, i, j, tohm[20], tot = 0;
+    float avhm;
+
+    // Get the number of tracks from the user.
+    printf("Enter the number of tracks: ");
+    scanf("%d", &n);
+
+    // Get the track numbers from the user.
+    printf("Enter the tracks to be traversed: ");
+    for (i = 0; i < n; i++) {
+        scanf("%d", &t[i]);
+    }
+    int temp=50;
+    // Calculate the head movements between consecutive tracks.
+    for (i = 0; i < n ; i++)
+    {
+        tohm[i] = temp - t[i];
+        temp = t[i];
+        // Calculate the difference between consecutive tracks.
+        if (tohm[i] < 0)
+        {
+            tohm[i] = tohm[i] * (-1); // Take the absolute value of the difference.
+        }
+    }
+
+    // Print the track numbers and the corresponding head movements.
+    printf("\nTrack\t\t\tHead Movement\n");
+    for (i = 0; i < n; i++) {
+        printf("%d\t\t\t%d\n", t[i], tohm[i]);
+        tot += tohm[i]; // Accumulate the total head movement.
+    }
+
+    // Calculate and print the average head movement.
+    if (n > 1) {
+        avhm = (float)tot / (n - 1); // Calculate the average.
+        printf("\nAverage header movements: %f\n", avhm);
+    } else {
+        printf("\nOnly one track, no head movement.\n");
+        avhm = 0;
+    }
+
+    printf("Press Enter to exit..."); // Added to prevent console closing immediately.
+
+    return 0;
+}
